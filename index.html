@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>PyScript Base Converter</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+  </head>
+
+  <style>
+
+	body {background-color:#181818;color:white}
+	input{background-color:#181818;color:white;border-color:white;border:2px;border-style:groove;display:block}
+	h1{font-size:32px}
+	button{border: 2px;border-style:solid;border-color:#0000FF;margin-top:1%}
+	p{width:36%}
+
+  </style>
+
+  <body >
+
+    <h1> Base Converter Made in pyscript </h1>
+    <div>
+	
+	<!-- text input for the number -->
+    	<label for="a">Input Number</label>
+    	<input id="a">
+
+	<!-- text input for the starting base -->
+    	<label for="base">Starting Base(Max 32)</label>
+    	<input id="basep">
+
+	<!-- text input for the arrival base -->
+    	<label for="base">Arrival Base</label>
+    	<input id="base">
+
+	<!-- convert button,this will call the funcion calculate using pys-onClick attribute -->
+    	<button id="submit" pys-onClick="calculate" heigh=50 width=60 >Convert</button>
+
+	<!-- this will display the error and result -->
+	<p style="color:red" id="err"></p>
+    	<p id="res"></p>
+
+	<!-- the id attribute will be used to modify the DOM and for obataining the input -->
+    </div>
+
+    <py-script>
+# dictionary for converting numbers in letters(upto base 32)
+conv_dictionary = {
+	1 : "1",
+	2 : "2",
+	3 : "3",
+	4 : "4",
+	5 : "5",
+	6 : "6",
+	7 : "7",
+	8 : "8",
+	9 : "9",	
+	10 : "A",
+	11 : "B",
+	12 : "C",
+	13 : "D",
+	14 : "E",
+	15 : "F",
+	16 : "G",
+	17 : "H",
+	18 : "I",	
+	27 : "R",
+	19 : "J",	
+	28 : "S",
+	20 : "K",	
+	29 : "T",
+	21 : "L",	
+	30 : "U",
+	22 : "M",	
+	31 : "V",
+	23 : "N",	
+	24 : "O",
+	25 : "P",
+	26 : "Q",
+}
+# reversed key-value dictionary
+rev_conv_dictionary = dict(zip(conv_dictionary.values(),conv_dictionary.keys()))
+
+# function that converts numbers in letters
+
+def convert(a):
+	if type(a) is int:
+		if a > 9:
+			return conv_dictionary[a]
+		else:
+			return a
+	else:
+		if(a == "-"):
+			return 0
+		return rev_conv_dictionary[a]
+
+#main event called from the button calculate(see the HTML tag)
+
+def calculate(*args, **kwargs):
+	
+	# DOM manipulation,resets the output of precedent calculation
+	# notice the first parameter, in this case the id of the HTML element
+	pyscript.write('res',"")
+	pyscript.write('err',"")
+
+	# getting the values from text input
+	# using try/except for invalid values
+	try:
+		# getting the input from the user 
+		base_p = int(Element("basep").value,10)
+		base_a = int(Element("base").value,10)
+
+		# understanding if the input value base is valid
+		if(base_p <= 10):
+			if(base_p > 1):
+				a = int(Element("a").value,10)
+			else:
+				# base invalid,so i do DOM manipulation to modify the string of the 
+				# <p> tag with id "err" with a new string
+				pyscript.write('err', "ERROR invalid base")
+				return
+
+	except:
+		# invalid input, could be null string o strange charaters
+		pyscript.write('err', "ERROR invalid input")
+		return
+
+	# controlling the arriving base
+	if(base_a < 2):
+		pyscript.write('err', "ERROR invalid base")
+		return
+	
+	# this part is only about conversion algorithms
+	save = []
+	tmp = 0
+	negative = ""
+	if(base_p != 10):
+		try:
+			a = str(Element("a").value)
+		except:
+			pyscript.write('err', "ERROR invalid input")
+			return
+		i = len(a) - 1
+		try:
+			for letter in a:
+				tmp = int(convert(letter))*base_p**i + tmp
+				i = i - 1
+			if(a[0] == "-"):
+				negative = " -"
+		except:
+			pyscript.write('err', "ERROR letters outside range conversion")
+		a = tmp
+	if(a<0):
+		negative = " -"
+		a = -a
+	if (base_a != 10):
+		tmp = ""
+		while a != 0:
+			save.append(int(a%base_a))
+			a = int(a/base_a)
+		try:
+			for i in range(len(save)-1,-1,-1):
+				tmp += str(convert(save[i]))
+			tmp = negative + tmp
+		except:
+			tmp = negative + str(save[::-1])
+			pyscript.write('err',"base was too large for the avaiable charset,the conversion will be written in single digit output")
+	else:
+		tmp = negative + str(a)
+
+	# after the calculation code DOM is again modified to display the result
+	pyscript.write('res',"result: " + str(tmp) )
+
+    </py-script>
+
+  </body>
+
+<!-- by LoreBadTime -->
+</html>

@@ -3,8 +3,6 @@
   <head>
 
     <meta charset="utf-8" />
-    <link rel="canonical" href="https://lorebadtime.github.io/Base-Converter_PyScript/" />
-    <link rel="manifest" href="/github.com/LoreBadTime/Base-Converter_PyScript/manifest.webmanifest">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>PyScript Base Converter</title>
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
@@ -58,14 +56,6 @@
 	<!-- the id attribute will be used to modify the DOM and for obataining the input -->
     </div>
     </div>
-    <script>
-      if (navigator.serviceWorker) {
-        navigator.serviceWorker.register (
-          '/github.com/LoreBadTime/Base-Converter_PyScript/sw.js',
-          {scope: '/github.com/LoreBadTime/Base-Converter_PyScript/'}
-        )
-      }
-    </script>
     <py-script>
 for e in document.querySelectorAll(".unload"):
 	e.classList.replace("unload","load")

@@ -18,11 +18,4 @@
   // The possible icons to display. Make sure to change the src URL,
   // the type and the size to your needs. If the size isn't correct, 
   // you may not be able to install the app. 
-  "icons": [
-      {
-        "src": "https://github.com/LoreBadTime/zip-password-recover/blob/main/icon.ico",
-        "type": "image/ico",
-        "sizes": "700x700"
-      }
-  ]
 }

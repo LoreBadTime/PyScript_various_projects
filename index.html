@@ -11,7 +11,7 @@
   </head>
 
   <style>
-
+        .dontload{visibility:hidden}
 	body {background-color:#181818;color:white}
 	input{background-color:#181818;color:white;border-color:white;border:2px;border-style:groove;display:block}
 	h1{font-size:32px}
@@ -20,7 +20,7 @@
 
   </style>
 
-  <body >
+  <body class="dontload">
 
     <h1> Base Converter Made in pyscript </h1>
     <div>
@@ -48,6 +48,7 @@
     </div>
 
     <py-script>
+Element("dontload").removeclass("dontload")
 # dictionary for converting numbers in letters(upto base 32)
 conv_dictionary = {
         0 : "0",

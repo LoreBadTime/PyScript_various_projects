@@ -152,7 +152,8 @@ def calculate(*args, **kwargs):
 				i = i - 1
 			if(a[0] == "-"):
 				negative = " -"
-		except:
+		except Exception as e: 
+                        print(e)
 			pyscript.write('err', "ERROR letters outside range conversion")
 		a = tmp
 	if(a<0):

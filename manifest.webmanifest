@@ -1,0 +1,28 @@
+{
+  "name": "Base converter",
+  "short_name": "CNVT",
+  "description": "PWA converter",
+
+  
+  "scope": "https://github.com/LoreBadTime/Base-Converter_PyScript/",
+  "start_url": "https://github.com/LoreBadTime/Base-Converter_PyScript/",
+
+  // colours of the app as displayed in the installer
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+
+  // Display of the app. 
+  //This could be "standalone", "fullscreen", "minimal-ui" or "browser"
+  "display": "fullscreen", 
+  
+  // The possible icons to display. Make sure to change the src URL,
+  // the type and the size to your needs. If the size isn't correct, 
+  // you may not be able to install the app. 
+  "icons": [
+      {
+        "src": "https://github.com/LoreBadTime/zip-password-recover/blob/main/icon.ico",
+        "type": "image/ico",
+        "sizes": "700x700"
+      }
+  ]
+}

@@ -12,7 +12,7 @@
 
   <style>
         .load{visibility:visible}
-        *{visibility:hidden}
+        body > #main > * {visibility:hidden}
 	body {background-color:#181818;color:white}
 	input{background-color:#181818;color:white;border-color:white;border:2px;border-style:groove;display:block}
 	h1{font-size:32px}
@@ -22,7 +22,7 @@
   </style>
 
   <body>
-
+    <div id="main">
     <h1> Base Converter Made in pyscript </h1>
     <div>
 	
@@ -47,9 +47,10 @@
 
 	<!-- the id attribute will be used to modify the DOM and for obataining the input -->
     </div>
+    </div>
 
     <py-script>
-Element.select("*").addclass("load")
+Element.select("#main > *").addclass("load")
 # dictionary for converting numbers in letters(upto base 32)
 conv_dictionary = {
         0 : "0",

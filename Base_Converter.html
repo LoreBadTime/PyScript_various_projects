@@ -172,7 +172,7 @@ def calculate(*args, **kwargs):
 	# after the calculation code DOM is again modified to display the result
 	pyscript.write('res',"result: " + str(tmp) )
 try:
-	navigator.serviceWorker.register('/PyScript_various_projects/sw.js').then()
+	navigator.serviceWorker.register('/PyScript_various_projects/sw.js')
 except:
 	console.error("Service worker registration failed")
 

@@ -15,4 +15,4 @@
 	py-loader > * {visibility:hidden}
 	a:link {text-decoration: none;color:#dddddd}
 	a:visited {text-decoration: none;color:#dddddd}
-	.centered-container{dysplay:flex;align-items:center;height:100%}
+	.centered-container{display:flex;align-items:center;height:100%}

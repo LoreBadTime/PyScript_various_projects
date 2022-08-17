@@ -2,8 +2,8 @@
   	.unload > *{visibility:hidden}
 	.load > *{visibility:visible}
 	label{text-align:center;display:block;margin-bottom:1%;margin-top:2%}
-	html {background-color:#222222;color:#dddddd;display:table;height:100%}
-	body{height:100%%}
+	html {background-color:#222222;color:#dddddd;display:table;height:100%;width:100%}
+	body{height:100%;width:100%}
 	input{margin:auto;padding:1%;background-color:#181818;color:white;border-color:white;border:2px;border-style:groove;display:block;width:80%}
 	h1{font-size:32px;text-align:center}
 	button{border: 2px;border-style:solid;border-color:#dddddd;background-color:#222222;color:#dddddd;margin-top:1%;text-align:center;width:20%;display:block;margin:auto;width:20%;heigh:5%;margin-top:3%}
@@ -15,4 +15,4 @@
 	py-loader > * {visibility:hidden}
 	a:link {text-decoration: none;color:#dddddd}
 	a:visited {text-decoration: none;color:#dddddd}
-	centered-container{dysplay:flex;align-items:center;height:100}
+	centered-container{dysplay:flex;align-items:center;height:100%}

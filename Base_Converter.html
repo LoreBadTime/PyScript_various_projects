@@ -39,6 +39,13 @@
     </div>
     </div>
     <py-script>
+import js
+
+try:
+	navigator.serviceWorker.register('/sw.js').then()	
+except:
+   	 console.error("Service worker registration failed")
+
 for e in document.querySelectorAll(".unload"):
 	e.classList.replace("unload","load")
 
@@ -171,7 +178,6 @@ def calculate(*args, **kwargs):
 	pyscript.write('res',"result: " + str(tmp) )
 
     </py-script>
-
   </body>
 
 <!-- by LoreBadTime -->

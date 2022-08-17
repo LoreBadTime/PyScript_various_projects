@@ -12,3 +12,6 @@
 		.main{width: 75%;}
 	}
 	py-loader > * {visibility:hidden}
+	a:link {text-decoration: none;}
+	a:visited {text-decoration: none;}
+

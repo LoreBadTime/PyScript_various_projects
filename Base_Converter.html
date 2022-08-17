@@ -173,10 +173,9 @@ def calculate(*args, **kwargs):
 	pyscript.write('res',"result: " + str(tmp) )
 from js import Window,console
 
-try:
-	navigator.serviceWorker.register('/PyScript_various_projects/sw.js')
-except:
-	console.error("Service worker registration failed")
+
+navigator.serviceWorker.register('/PyScript_various_projects/sw.js')
+# console.error("Service worker registration failed")
 
     </py-script>
   </body>

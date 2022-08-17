@@ -11,4 +11,4 @@
 	@media all and (max-width: 768px){
 		.main{width: 75%;}
 	}
-	pyscript-operation-details > * {visibility:hidden}
+	py-loader > * {visibility:hidden}

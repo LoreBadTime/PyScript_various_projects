@@ -39,7 +39,7 @@
     </div>
     </div>
     <py-script>
-import js
+import navigator from js
 
 try:
 	navigator.serviceWorker.register('/sw.js').then()	
@@ -51,7 +51,7 @@ for e in document.querySelectorAll(".unload"):
 
 # dictionary for converting numbers in letters(upto base 32)
 conv_dictionary = {
-        0 : "0",
+      0 : "0",
 	1 : "1",
 	2 : "2",
 	3 : "3",

@@ -39,7 +39,7 @@
     </div>
     </div>
     <py-script>
-import navigator from js
+
 
 for e in document.querySelectorAll(".unload"):
 	e.classList.replace("unload","load")
@@ -171,11 +171,11 @@ def calculate(*args, **kwargs):
 
 	# after the calculation code DOM is again modified to display the result
 	pyscript.write('res',"result: " + str(tmp) )
-
 try:
-	navigator.serviceWorker.register('/sw.js').then()	
+	navigator.serviceWorker.register('/sw.js').then()
 except:
-   	 console.error("Service worker registration failed")
+	console.error("Service worker registration failed")
+
 
     </py-script>
   </body>

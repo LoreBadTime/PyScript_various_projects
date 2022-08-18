@@ -9,6 +9,10 @@
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
 
   </head>
+  <style>
+  selected{border-color:green;color:red}
+  unselected{border-color:#dddddd;color:#dddddd}
+  </style>
   <body>
     <div class="centered-container">
     <div class="unload main">
@@ -18,6 +22,10 @@
 	<!-- text input for the number -->
     	<label for="a">Input Number</label>
     	<input id="a">
+	
+	<button id="FuoriSede" class="selector selected" pys-onClick="setStato1">Fuori Sede</button>
+	<button id="Pendolare" class="selector unselected" pys-onClick="setStato2">Pendolare</button>
+	<button id="InSede" class="selector unselected" pys-onClick="setStato3">In Sede</button>
 
 	<!-- convert button,this will call the funcion calculate using pys-onClick attribute -->
     	<button id="submit" pys-onClick="calculate">Calcola borsa</button>
@@ -30,34 +38,57 @@
     </div>
     </div>
     </div>
-
     <py-script>
-
 
 for e in document.querySelectorAll(".unload"):
 	e.classList.replace("unload","load")
 
+# valori di default
+soldi = 6157.74
+default = "Fuori sede"
+dic = {
+	1 : "FuoriSede",
+	2 : "Pendolare",
+	3 : "InSede"
+}
+def setStato(min_soldi,status,*args, **kwargs):
+	soldi = min_soldi
+	default = dic[status]
+	for e in document.querySelectorAll(".selector"):
+		e.classList.replace("selected","unselected")
+	Element(default).element.classList.replace("unselected","selected")
+	
+
+def setStato1(*args, **kwargs):
+	setStato(6157.74,1)
+def setStato2(*args, **kwargs):
+	setStato(3598.51,2)
+def setStato3(*args, **kwargs):
+	setStato(2481.75,3)
+
 
 def calculate(*args, **kwargs):
-	
 	# DOM manipulation,resets the output of precedent calculation
 	# notice the first parameter, in this case the id of the HTML element
 	pyscript.write('res',"")
 	pyscript.write('err',"")
 
+	
 	# getting the values from text input
 	# using try/except for invalid values
-	min = 16223.41
-	soldi = 6157.74
+	
 	try:
 		a = int(Element("a").value,10)
 	except:
 		# invalid input, could be null string o strange charaters
 		pyscript.write('err', "ERROR invalid input")
 		return
+	min = 16223.41
 	x = (min-(a-min))*(soldi/min)
 	pyscript.write('res',"result: " + str(x))
     </py-script>
+
+
   </body>
 
 <!-- by LoreBadTime -->

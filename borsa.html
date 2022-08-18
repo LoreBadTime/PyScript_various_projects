@@ -10,13 +10,13 @@
 
   </head>
   <style>
-  selected{border-color:green;color:red}
-  unselected{border-color:#dddddd;color:#dddddd}
+  .selected{border-color:green;color:green}
+  .unselected{border-color:#dddddd;color:#dddddd}
   </style>
   <body>
     <div class="centered-container">
     <div class="unload main">
-    <h1> Base Converter Made in PyScript </h1>
+    <h1> Calcolatore Borsa di studio </h1>
     <div>
 	
 	<!-- text input for the number -->
@@ -52,12 +52,13 @@ dic = {
 	3 : "InSede"
 }
 def setStato(min_soldi,status,*args, **kwargs):
+	global soldi,default
 	soldi = min_soldi
 	default = dic[status]
 	for e in document.querySelectorAll(".selector"):
 		e.classList.replace("selected","unselected")
 	Element(default).element.classList.replace("unselected","selected")
-	
+	return soldi,default
 
 def setStato1(*args, **kwargs):
 	setStato(6157.74,1)
@@ -84,8 +85,14 @@ def calculate(*args, **kwargs):
 		pyscript.write('err', "ERROR invalid input")
 		return
 	min = 16223.41
-	x = (min-(a-min))*(soldi/min)
-	pyscript.write('res',"result: " + str(x))
+	if a < min :
+		x = soldi
+	elif a < 12167.56:
+		x = soldi + ((soldi/100)*15)
+	else :
+		x = (min-(a-min))*(soldi/min)
+	
+	pyscript.write('res',"result: " + str("{:.2f}".format(x)))
     </py-script>
 
 

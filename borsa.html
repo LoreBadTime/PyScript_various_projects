@@ -87,8 +87,8 @@ def calculate(*args, **kwargs):
 	min = 16223.41
 	if a < min :
 		x = soldi
-	elif a < 12167.56:
-		x = soldi + ((soldi/100)*15)
+		if a < 12167.56:
+			x = soldi + ((soldi/100)*15)
 	else :
 		x = (min-(a-min))*(soldi/min)
 	

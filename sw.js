@@ -70,7 +70,19 @@ self.addEventListener('fetch', event => {
         });
          
         }else{
+          
+        if (event.request.url === 'https://cdn.jsdelivr.net/pyodide/v0.20.0/full/pyodide.asm.data'){
          
+        return caches.open(RUNTIME).then(cache => {
+          const pysrequest = new Request('https://cdn.jsdelivr.net/pyodide/v0.20.0/full/pyodide.asm.data', {mode: 'no-cors'});
+          return fetch(pysrequest).then(response => {
+            // Put a copy of the response in the runtime cache.
+            return cache.put(pysrequest, response.clone()).then(() => {
+              return response;
+            });
+          });
+        });
+         }else{
         return caches.open(RUNTIME).then(cache => {
           return fetch(event.request).then(response => {
             // Put a copy of the response in the runtime cache.
@@ -79,5 +91,5 @@ self.addEventListener('fetch', event => {
             });
           });
         });
-      };
+      }};
       }))})

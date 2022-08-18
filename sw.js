@@ -57,7 +57,7 @@ self.addEventListener('fetch', event => {
           return cachedResponse;
         }
        
-        if (event.request.url.equals('https://pyscript.net/alpha/pyscript.js')){
+        if (event.request.url === 'https://pyscript.net/alpha/pyscript.js'){
          
         return caches.open(RUNTIME).then(cache => {
           const pysrequest = new Request('https://pyscript.net/alpha/pyscript.js', {mode: 'no-cors'});

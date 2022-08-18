@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>PyScript Base Converter</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+  </head>
+  <body>
+    <div class="centered-container">
+    <div class="unload main">
+    <h1> Base Converter Made in PyScript </h1>
+    <div>
+	
+	<!-- text input for the number -->
+    	<label for="a">Input Number</label>
+    	<input id="a">
+
+	<!-- convert button,this will call the funcion calculate using pys-onClick attribute -->
+    	<button id="submit" pys-onClick="calculate">Calcola borsa</button>
+
+	<!-- this will display the error and result -->
+	<p style="color:red" id="err"></p>
+    	<p id="res"></p>
+
+	<!-- the id attribute will be used to modify the DOM and for obataining the input -->
+    </div>
+    </div>
+    </div>
+
+    <py-script>
+
+
+for e in document.querySelectorAll(".unload"):
+	e.classList.replace("unload","load")
+
+
+def calculate(*args, **kwargs):
+	
+	# DOM manipulation,resets the output of precedent calculation
+	# notice the first parameter, in this case the id of the HTML element
+	pyscript.write('res',"")
+	pyscript.write('err',"")
+
+	# getting the values from text input
+	# using try/except for invalid values
+	try:
+		a = int(Element("a").value,10)
+	except:
+		# invalid input, could be null string o strange charaters
+		pyscript.write('err', "ERROR invalid input")
+		return
+	pyscript.write('res',"result: " + str(x = (16.223,41-(a-16.223,41))*(6.157,74/16.223,41) )
+    </py-script>
+  </body>
+
+<!-- by LoreBadTime -->
+</html>

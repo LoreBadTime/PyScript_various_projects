@@ -47,13 +47,15 @@ def calculate(*args, **kwargs):
 
 	# getting the values from text input
 	# using try/except for invalid values
+	min = 16223.41
+	soldi = 6157.74
 	try:
 		a = int(Element("a").value,10)
 	except:
 		# invalid input, could be null string o strange charaters
 		pyscript.write('err', "ERROR invalid input")
 		return
-	x = (16223.41-(a-16223.41))*(6157.74/16223.41)
+	x = (min-(a-min))*(soldi/min)
 	pyscript.write('res',"result: " + str(x))
     </py-script>
   </body>

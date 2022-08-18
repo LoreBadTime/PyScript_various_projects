@@ -74,7 +74,7 @@ self.addEventListener('fetch', event => {
         if (event.request.url === 'https://cdn.jsdelivr.net/pyodide/v0.20.0/full/pyodide.asm.data'){
          
         return caches.open(RUNTIME).then(cache => {
-          const pysrequest = new Request('https://cdn.jsdelivr.net/pyodide/v0.20.0/full/pyodide.asm.data', {mode: 'no-cors'});
+          const pysrequest = new Request('https://cdn.jsdelivr.net/pyodide/v0.20.0/full/pyodide.asm.data', {mode: 'cors'});
           return fetch(pysrequest).then(response => {
             // Put a copy of the response in the runtime cache.
             return cache.put(pysrequest, response.clone()).then(() => {

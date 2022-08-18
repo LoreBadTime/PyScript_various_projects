@@ -66,10 +66,9 @@ self.addEventListener('fetch', event => {
             // Put a copy of the response in the runtime cache.
             return cache.put(pysrequest, response.clone()).then(() => {
               return response;
-           });
+            });
           });
         });
-      });
         }
         else{
         return caches.open(RUNTIME).then(cache => {
@@ -80,9 +79,7 @@ self.addEventListener('fetch', event => {
             });
           });
         });
+      }
       });
-     }
-     
     );
-
 });

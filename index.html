@@ -28,14 +28,14 @@
     <script>
 	navigator.serviceWorker.register('/PyScript_various_projects/sw.js')
    </script>
-   <pyscript>
+   <py-script>
 console.log("here")
 for e in document.querySelectorAll(".unload"):
 	e.classList.replace("unload","load")
 	   
-Element("remove").element.classList.replace("load","unload")
+Element("remove").element.remove()
 	   
-   </pyscript>
+   </py-script>
    
   </body>
 

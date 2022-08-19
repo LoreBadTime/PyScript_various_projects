@@ -3,7 +3,7 @@
 <p>Every html file is a pyscript project.</br>
 Other files are just external testing things
 </p>
-<h2>Examples includes</h>
+<h2>Examples includes</h2>
 <ul>
 <li>A full math base converter</li>
 <li>A calculator for my University Scholarship</li>

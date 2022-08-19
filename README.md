@@ -10,5 +10,5 @@ Other files are just external testing things
 </ul>
 <p>Examples may be expanded as time goes on when i need something that I can build myself</p>
 
-Workin website
+Working website
 <a href="https://lorebadtime.github.io/PyScript_various_projects/">Here</a>

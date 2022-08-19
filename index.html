@@ -16,8 +16,9 @@
   </style>
   <body>
     <div class="centered-container">
-    <div class="load main">
+    <div class="unload main">
     <div>
+      <img id="remove" src="./1.webp" class="load rotate" width="300" height="300" />
       <button id="submit"><a href="Base_Converter.html">Base Converter</a></button>
       <button id="submit"><a href="borsa.html">Calcolatore Borsa di studio(2022-unica)</a></button>
 	<!-- the id attribute will be used to modify the DOM and for obataining the input -->
@@ -26,7 +27,15 @@
     </div>
     <script>
 	navigator.serviceWorker.register('/PyScript_various_projects/sw.js')
-</script>
+   </script>
+   <pyscript>
+	   
+for e in document.querySelectorAll(".unload"):
+	e.classList.replace("unload","load")
+Element("remove").element.remove()
+	   
+   </pyscript>
+   
   </body>
 
 <!-- by LoreBadTime -->

@@ -1,5 +1,5 @@
 
-  	.unload > *{visibility:hidden}
+  	.unload > *:not(.load){visibility:hidden}
 	.load > *{visibility:visible}
 	label{text-align:center;display:block;margin-bottom:1%;margin-top:2%}
 	html {background-color:#222222;color:#dddddd;display:table;height:100%;width:100%}

@@ -17,5 +17,5 @@
 	a:link {text-decoration: none;color:#dddddd}
 	a:visited {text-decoration: none;color:#dddddd}
 	.centered-container{display:flex;align-items:center;height:100%}
-	.rotate {animation-name: rotation;animation-duration: 0.4s;animation-iteration-count: infinite;animation-direction: normal;animation-timing-function: linear;}
+	.rotate {margin:auto;display:block;width:300px;height:300px;animation-name: rotation;animation-duration: 0.45s;animation-iteration-count: infinite;animation-direction: normal;animation-timing-function: linear;}
 	@keyframes rotation {from{transform: rotate(0deg);}to {transform: rotate(359deg);}}

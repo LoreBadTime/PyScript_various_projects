@@ -44,7 +44,7 @@ for e in document.querySelectorAll(".unload"):
 	e.classList.replace("unload","load")
 
 # valori di default
-soldi = 6157.74
+soldi = 6656.52
 default = "Fuori sede"
 dic = {
 	1 : "FuoriSede",
@@ -61,11 +61,11 @@ def setStato(min_soldi,status,*args, **kwargs):
 	return soldi,default
 
 def setStato1(*args, **kwargs):
-	setStato(6157.74,1)
+	setStato(6656.52,1)
 def setStato2(*args, **kwargs):
-	setStato(3598.51,2)
+	setStato(3889.99,2)
 def setStato3(*args, **kwargs):
-	setStato(2481.75,3)
+	setStato(2682.77,3)
 
 
 def calculate(*args, **kwargs):
@@ -84,12 +84,12 @@ def calculate(*args, **kwargs):
 		# invalid input, could be null string o strange charaters
 		pyscript.write('err', "ERROR invalid input")
 		return
-	min = 16223.41
+	min = 17537.49
 	if a < min :
 		x = soldi
-		if a < 12167.56:
+		if a < 13153.13:
 			x = soldi + ((soldi/100)*15)
-	elif a > 24335.11:
+	elif a > 26306.25 :
 	        x = 0
 	else :
 		x = (min-(a-min))*(soldi/min)

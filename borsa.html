@@ -45,7 +45,7 @@ for e in document.querySelectorAll(".unload"):
 
 # valori di default
 soldi = 6656.52
-default = "Fuori sede"
+default = "FuoriSede"
 dic = {
 	1 : "FuoriSede",
 	2 : "Pendolare",
@@ -93,8 +93,11 @@ def calculate(*args, **kwargs):
 	        x = 0
 	else :
 		x = (min-(a-min))*(soldi/min)
-	
-	pyscript.write('res',"result: " + str("{:.2f}".format(x)))
+	y = ""
+	if default == "FuoriSede":
+		y = x - 2063.96
+		y = "(senza posto alloggio incluso nella borsa: " + str(y) +")"
+	pyscript.write('res',"risultato: " + str("{:.2f}".format(x)) + y)
     </py-script>
 
 

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>PyScript Personal Projects</title>
     <link rel="stylesheet" href="./style.css" />
-    <script defer src="https://pyscript.net/releases/2025.7.2/core-3crqT3rt.js"></script>
+    <script type="module" src="https://pyscript.net/releases/2025.7.2/core-3crqT3rt.js"></script>
 
   </head>
   <style>  
@@ -28,7 +28,7 @@
     <script>
 	navigator.serviceWorker.register('/PyScript_various_projects/sw.js')
    </script>
-   <py-script>
+   <section class="pyscript">
 
 class Elements:
     __identifier = 0
@@ -62,7 +62,7 @@ for e in Elements(".unload").elements:
 	   
 Element("remove").element.remove()
 	   
-   </py-script>
+   <section class="pyscript">
    
   </body>
 

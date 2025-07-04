@@ -26,7 +26,9 @@
     </div>
     </div>
     <script>
-	    navigator.serviceWorker.register('/PyScript_various_projects/sw.js')
+      if (location.protocol === 'https:' || location.hostname === 'localhost') {
+        navigator.serviceWorker.register('./sw.js');
+      }
    </script>
    <section class="pyscript">
     <script type="py">

@@ -57,10 +57,10 @@ self.addEventListener('fetch', event => {
           return cachedResponse;
         }
        
-        if (event.request.url === 'https://pyscript.net/releases/2025.7.2/core.js'){
+        if (event.request.url === 'https://pyscript.net/releases/2025.7.2/core-3crqT3rt.js'){
          
         return caches.open(RUNTIME).then(cache => {
-          const pysrequest = new Request('https://pyscript.net/releases/2025.7.2/core.js', {mode: 'no-cors'});
+          const pysrequest = new Request('https://pyscript.net/releases/2025.7.2/core-3crqT3rt.js', {mode: 'no-cors'});
           return fetch(pysrequest).then(response => {
             // Put a copy of the response in the runtime cache.
             return cache.put(pysrequest, response.clone()).then(() => {

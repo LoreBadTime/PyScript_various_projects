@@ -57,10 +57,10 @@ self.addEventListener('fetch', event => {
           return cachedResponse;
         }
        
-        if (event.request.url === 'https://pyscript.net/alpha/pyscript.js'){
+        if (event.request.url === 'https://pyscript.net/releases/2025.7.2/core.js'){
          
         return caches.open(RUNTIME).then(cache => {
-          const pysrequest = new Request('https://pyscript.net/alpha/pyscript.js', {mode: 'no-cors'});
+          const pysrequest = new Request('https://pyscript.net/releases/2025.7.2/core.js', {mode: 'no-cors'});
           return fetch(pysrequest).then(response => {
             // Put a copy of the response in the runtime cache.
             return cache.put(pysrequest, response.clone()).then(() => {
@@ -71,10 +71,10 @@ self.addEventListener('fetch', event => {
          
         }else{
           
-        if (event.request.url === 'https://cdn.jsdelivr.net/pyodide/v0.20.0/full/pyodide.asm.data'){
+        if (event.request.url === 'https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.asm.data'){
          
         return caches.open(RUNTIME).then(cache => {
-          const pysrequest = new Request('https://cdn.jsdelivr.net/pyodide/v0.20.0/full/pyodide.asm.data', {mode: 'cors'});
+          const pysrequest = new Request('https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.asm.data', {mode: 'cors'});
           return fetch(pysrequest).then(response => {
             // Put a copy of the response in the runtime cache.
             return cache.put(pysrequest, response.clone()).then(() => {

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Base Converter</title>
     <link rel="stylesheet" href="./style.css" />
-    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+   <script type="module" src="https://pyscript.net/releases/2025.7.2/core.js"></script>
 
   </head>
   <body>
@@ -28,7 +28,7 @@
     	<input id="base">
 
 	<!-- convert button,this will call the funcion calculate using pys-onClick attribute -->
-    	<button id="submit" pys-onClick="calculate">Convert</button>
+    	<button id="submit" py-click="calculate">Convert</button>
 
 	<!-- this will display the error and result -->
 	<p style="color:red" id="err"></p>
@@ -38,9 +38,45 @@
     </div>
     </div>
     </div>
+<section class="pyscript">
+    <script type="py">
+from pyscript import window, document
+from pyscript import display as write
+from pyscript.web import page
 
-    <py-script>
+class Elements:
+    __identifier = 0
 
+    def __init__(self, query, elements=None):
+        self._query = query
+        self._elements = elements
+        self._identifier = Elements.__identifier
+        Elements.__identifier += 1
+
+    @property
+    def query(self):
+        return self._query
+
+    @property
+    def elements(self):
+        """Return a list of dom elements"""
+        if not self._elements:
+            self._elements = []
+            i = 0
+            for el in document.querySelectorAll(f"{self._query}"):
+                
+                if el.id == "":
+                    el.id = str(f"pys{self._identifier}{i}")
+                    i += 1
+                print(el.id)
+                self._elements.append(document.querySelector(f"#{el.id}"))
+        return self._elements
+    def remove(self):
+        """Remove all elements from the dom"""
+        for el in self._elements:
+            el.remove()
+        self._elements = []
+        
 
 for e in document.querySelectorAll(".unload"):
 	e.classList.replace("unload","load")
@@ -102,34 +138,34 @@ def calculate(*args, **kwargs):
 	
 	# DOM manipulation,resets the output of precedent calculation
 	# notice the first parameter, in this case the id of the HTML element
-	pyscript.write('res',"")
-	pyscript.write('err',"")
+	Elements("#res").elements[0].innerHTML = ""
+	Elements("#err").elements[0].innerHTML = ""
 
 	# getting the values from text input
 	# using try/except for invalid values
 	try:
 		# getting the input from the user 
-		base_p = int(Element("basep").value,10)
-		base_a = int(Element("base").value,10)
+		base_p = int(Elements("#basep").elements[0].value,10)
+		base_a = int(Elements("#base").elements[0].value,10)
 
 		# understanding if the input value base is valid
 		if(base_p <= 10):
 			if(base_p > 1):
-				a = int(Element("a").value,10)
+				a = int(Elements("#a").elements[0].value,10)
 			else:
 				# base invalid,so i do DOM manipulation to modify the string of the 
 				# <p> tag with id "err" with a new string
-				pyscript.write('err', "ERROR invalid base")
+				Elements("#err").elements[0].innerHTML = "ERROR invalid base"
 				return
 
 	except:
 		# invalid input, could be null string o strange charaters
-		pyscript.write('err', "ERROR invalid input")
+		Elements("#err").elements[0].innerHTML = "ERROR invalid input"
 		return
 
 	# controlling the arriving base
 	if(base_a < 2):
-		pyscript.write('err', "ERROR invalid base")
+		Elements("#err").elements[0].innerHTML = "ERROR invalid base"
 		return
 	
 	# this part is only about conversion algorithms
@@ -138,9 +174,9 @@ def calculate(*args, **kwargs):
 	negative = ""
 	if(base_p != 10):
 		try:
-			a = str(Element("a").value)
+			a = str(Elements("#a").elements[0].value)
 		except:
-			pyscript.write('err', "ERROR invalid input")
+			Elements("#err").elements[0].innerHTML = "ERROR invalid input"
 			return
 		i = len(a) - 1
 		try:
@@ -150,7 +186,7 @@ def calculate(*args, **kwargs):
 			if(a[0] == "-"):
 				negative = " -"
 		except:
-			pyscript.write('err', "ERROR letters outside range conversion")
+			Elements("#err").elements[0].innerHTML = "ERROR letters outside range conversion"
 		a = tmp
 	if(a<0):
 		negative = " -"
@@ -166,13 +202,14 @@ def calculate(*args, **kwargs):
 			tmp = negative + tmp
 		except:
 			tmp = negative + str(save[::-1])
-			pyscript.write('err',"base was too large for the avaiable charset,the conversion will be written in single digit output")
+			Elements("#err").elements[0].innerHTML = "base was too large for the avaiable charset,the conversion will be written in single digit output"
 	else:
 		tmp = negative + str(a)
 
 	# after the calculation code DOM is again modified to display the result
-	pyscript.write('res',"result: " + str(tmp) )
-    </py-script>
+	Elements("#res").elements[0].innerHTML = "result: " + str(tmp)
+    </script>
+    </section>
   </body>
 
 <!-- by LoreBadTime -->

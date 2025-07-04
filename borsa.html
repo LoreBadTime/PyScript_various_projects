@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Calcolatore borsa di studio Unica 2022-23</title>
     <link rel="stylesheet" href="./style.css" />
-    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <script type="module" src="https://pyscript.net/releases/2025.7.2/core.js"></script>
 
   </head>
   <style>
@@ -23,12 +23,12 @@
     	<label for="a">Inserisci l'ISEE</label>
     	<input id="a">
 	
-	<button id="FuoriSede" class="selector selected" pys-onClick="setStato1">Fuori Sede</button>
-	<button id="Pendolare" class="selector unselected" pys-onClick="setStato2">Pendolare</button>
-	<button id="InSede" class="selector unselected" pys-onClick="setStato3">In Sede</button>
+	<button id="FuoriSede" class="selector selected" py-click="setStato1">Fuori Sede</button>
+	<button id="Pendolare" class="selector unselected" py-click="setStato2">Pendolare</button>
+	<button id="InSede" class="selector unselected" py-click="setStato3">In Sede</button>
 
 	<!-- convert button,this will call the funcion calculate using pys-onClick attribute -->
-    	<button id="submit" pys-onClick="calculate">Calcola borsa</button>
+    	<button id="submit" py-click="calculate">Calcola borsa</button>
 
 	<!-- this will display the error and result -->
 	<p style="color:red" id="err"></p>
@@ -38,7 +38,45 @@
     </div>
     </div>
     </div>
-    <py-script>
+    <section class="pyscript">
+    <script type="py">
+from pyscript import window, document
+from pyscript import display as write
+from pyscript.web import page
+
+class Elements:
+    __identifier = 0
+
+    def __init__(self, query, elements=None):
+        self._query = query
+        self._elements = elements
+        self._identifier = Elements.__identifier
+        Elements.__identifier += 1
+
+    @property
+    def query(self):
+        return self._query
+
+    @property
+    def elements(self):
+        """Return a list of dom elements"""
+        if not self._elements:
+            self._elements = []
+            i = 0
+            for el in document.querySelectorAll(f"{self._query}"):
+                
+                if el.id == "":
+                    el.id = str(f"pys{self._identifier}{i}")
+                    i += 1
+                print(el.id)
+                self._elements.append(document.querySelector(f"#{el.id}"))
+        return self._elements
+    def remove(self):
+        """Remove all elements from the dom"""
+        for el in self._elements:
+            el.remove()
+        self._elements = []
+        
 
 for e in document.querySelectorAll(".unload"):
 	e.classList.replace("unload","load")
@@ -54,10 +92,11 @@ dic = {
 def setStato(min_soldi,status,*args, **kwargs):
 	global soldi,default
 	soldi = min_soldi
-	default = dic[status]
+	default = "#"+dic[status]
 	for e in document.querySelectorAll(".selector"):
 		e.classList.replace("selected","unselected")
-	Element(default).element.classList.replace("unselected","selected")
+	for e in Elements(default).elements:
+		e.classList.replace("unselected","selected")
 	return soldi,default
 
 def setStato1(*args, **kwargs):
@@ -69,20 +108,18 @@ def setStato3(*args, **kwargs):
 
 
 def calculate(*args, **kwargs):
-	# DOM manipulation,resets the output of precedent calculation
-	# notice the first parameter, in this case the id of the HTML element
-	pyscript.write('res',"")
-	pyscript.write('err',"")
 
-	
+	Elements("#err").elements[0].innerHTML = ""
+	Elements("#res").elements[0].innerHTML = ""
+
 	# getting the values from text input
 	# using try/except for invalid values
 	
 	try:
-		a = int(Element("a").value,10)
+		a = int(Elements("#a").elements[0].value,10)
 	except:
 		# invalid input, could be null string o strange charaters
-		pyscript.write('err', "ERROR invalid input")
+		Elements("#err").elements[0].innerHTML = "ERROR invalid input"
 		return
 	min = 17537.49
 	if a < min :
@@ -97,8 +134,10 @@ def calculate(*args, **kwargs):
 	if default == "FuoriSede":
 		y = x - 2063.96
 		y = "(senza posto alloggio incluso nella borsa: " + str(y) +")"
-	pyscript.write('res',"risultato: " + str("{:.2f}".format(x)) + y)
-    </py-script>
+	Elements("#res").elements[0].innerHTML = "risultato: " + str("{:.2f}".format(x)) + y
+
+    </script>
+    </section>
 
 
   </body>

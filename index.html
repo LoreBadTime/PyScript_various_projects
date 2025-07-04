@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>PyScript Personal Projects</title>
     <link rel="stylesheet" href="./style.css" />
-    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <script type="module" src="https://pyscript.net/releases/2025.7.2/core.js"></script>
 
   </head>
   <style>  
@@ -26,10 +26,12 @@
     </div>
     </div>
     <script>
-	navigator.serviceWorker.register('/PyScript_various_projects/sw.js')
+	    navigator.serviceWorker.register('/PyScript_various_projects/sw.js')
    </script>
-   <py-script>
-
+   <section class="pyscript">
+    <script type="py">
+from pyscript import window, document
+from pyscript.web import page
 class Elements:
     __identifier = 0
 
@@ -49,20 +51,29 @@ class Elements:
         if not self._elements:
             self._elements = []
             i = 0
-            for el in document.querySelectorAll(f"{self.query}"):
+            for el in document.querySelectorAll(f"{self._query}"):
+                
                 if el.id == "":
                     el.id = str(f"pys{self._identifier}{i}")
                     i += 1
-                self._elements.append(Element(el.id))
+                print(el.id)
+                self._elements.append(document.querySelector(f"#{el.id}"))
         return self._elements
-
+    def remove(self):
+        """Remove all elements from the dom"""
+        for el in self._elements:
+            el.remove()
+        self._elements = []
+        
 
 for e in Elements(".unload").elements:
-	e.element.classList.replace("unload","load")
-	   
-Element("remove").element.remove()
-	   
-   </py-script>
+	e.classList.replace("unload","load")
+
+for e in Elements("#remove").elements:
+  e.remove()
+
+	    </script>
+        </section>
    
   </body>
 

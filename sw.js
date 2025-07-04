@@ -20,9 +20,11 @@ const RUNTIME = 'runtime';
 // A list of local resources we always want to be cached.
 // I have modified only this list from original file from google
 const PRECACHE_URLS = [
+  '',
+  'style.css',
   'index.html',
   'Base_Converter.html',
-  'borsa.hmml'
+  'borsa.html'
 ];
 
 // The install handler takes care of precaching the resources we always need.
